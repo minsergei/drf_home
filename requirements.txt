@@ -10,3 +10,4 @@ redis
 python-dotenv
 apscheduler
 djangorestframework
+django-filter
