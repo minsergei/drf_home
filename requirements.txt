@@ -11,3 +11,4 @@ python-dotenv
 apscheduler
 djangorestframework
 django-filter
+djangorestframework-simplejwt
