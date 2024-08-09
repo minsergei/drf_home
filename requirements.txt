@@ -12,3 +12,4 @@ apscheduler
 djangorestframework
 django-filter
 djangorestframework-simplejwt
+coverage
