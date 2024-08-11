@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
     'rest_framework',
     'django_filters',
     'rest_framework_simplejwt',
@@ -142,3 +143,5 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+STRIPE_API_KEY = 'sk_test_51Pmj7aRsD4xGCpN3EQ2cRpcxejOQmTyn9kSfPtjFfRNVqXR9wRZjReN84XAU66wqboM06GZZUqtSJdZcNQ2MVNJR00MiVQMkco'

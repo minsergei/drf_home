@@ -46,12 +46,13 @@ class Payment(models.Model):
         (PAYMENT_CASH, 'Оплата наличными'),
         (PAYMENT_TRANSFER, 'Перевод на счет'),
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
     date_payment = models.DateTimeField(verbose_name='дата оплаты', auto_now_add=True)
     lesson_paid = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name='оплаченный урок', **NULLABLE)
     course_paid = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='оплаченный курс', **NULLABLE)
-    amount = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='сумма оплаты')
-    payment_type = models.CharField(max_length=50, choices=PAYMENT_CHOICES, verbose_name='тип оплаты')
+    amount = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='сумма оплаты', **NULLABLE)
+    payment_type = models.CharField(max_length=50, choices=PAYMENT_CHOICES, verbose_name='тип оплаты', **NULLABLE)
+    payment_link = models.URLField(max_length=400, verbose_name='ссылка для оплаты', **NULLABLE)
 
     class Meta:
         verbose_name = 'оплата'
