@@ -25,6 +25,7 @@ class Course(models.Model):
         **NULLABLE,
         verbose_name="Владелец",
     )
+    price = models.PositiveIntegerField(verbose_name='Цена курса', **NULLABLE)
 
     def __str__(self):
         return self.title

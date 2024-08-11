@@ -13,3 +13,5 @@ djangorestframework
 django-filter
 djangorestframework-simplejwt
 coverage
+drf_yasg
+stripe
