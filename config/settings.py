@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'django_celery_beat',
+
     'materials',
     'users',
 ]
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -164,3 +165,14 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 CELERY_BROKER_URL = os.getenv('LOCATION')
 CELERY_RESULT_BACKEND = os.getenv('LOCATION')
+CELERY_TASK_TRACK_STARTED = True
+# Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_TIMEZONE = TIME_ZONE
+
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'users.tasks.check_user',
+        'schedule': timedelta(minutes=30),
+    },
+}
