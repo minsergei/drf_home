@@ -10,6 +10,7 @@ from materials.serializers import CourseSerializer, LessonSerializer, SubscribeS
 from django_filters.rest_framework import DjangoFilterBackend
 
 from users.permissions import IsModerator, IsOwner
+from materials.tasks import send_email
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -21,6 +22,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         course = serializer.save()
         course.owner = self.request.user
         course.save()
+
+    def perform_update(self, serializer):
+        update_course = serializer.save()
+        send_email.delay(update_course.id)
+        update_course.save()
 
     def get_permissions(self):
         '''Назначаем права на действия с объектами'''
